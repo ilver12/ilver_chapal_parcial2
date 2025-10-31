@@ -18,7 +18,7 @@ services:
 
   # Servicio de base de datos MySQL
   db:
-    image: mysql:8
+    image: ilverand/mysql-users:1.0
     container_name: mysql_db
     environment:
       - MYSQL_ROOT_PASSWORD=adminadmin
@@ -28,8 +28,6 @@ services:
     volumes:
       # Volumen para persistencia de datos
       - mysql_data:/var/lib/mysql
-      # Script de inicialización
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "3306:3306"
     networks:
