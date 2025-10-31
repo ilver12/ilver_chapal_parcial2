@@ -1,0 +1,52 @@
+services:
+  # Servicio de la aplicación PHP
+  app:
+    image: ilverand/php-app:1.0
+    container_name: php_app
+    ports:
+      - "8080:80"
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      - db
+    networks:
+      - app_network
+    restart: unless-stopped
+
+  # Servicio de base de datos MySQL
+  db:
+    image: mysql:8
+    container_name: mysql_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      # Volumen para persistencia de datos
+      - mysql_data:/var/lib/mysql
+      # Script de inicialización
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - app_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u${DB_USER}", "-p${DB_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+# Definición de volúmenes
+volumes:
+  mysql_data:
+    driver: local
+
+# Definición de redes
+networks:
+  app_network:
+    driver: bridge
