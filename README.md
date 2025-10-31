@@ -37,33 +37,19 @@ project-root/
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/ilver12/docker-php-mysql.git
-cd docker-php-mysql
+git clone https://github.com/ilver12/ilver_chapal_parcial2.git
+cd ilver_chapal_parcial2
 ```
 
-### 2. Configurar variables de entorno
-
-```bash
-cp .env.example .env
-```
-
-Edita el archivo `.env` con tus credenciales:
-
-```env
-DB_HOST=db
-DB_NAME=app_db
-DB_USER=appuser
-DB_PASSWORD=securepassword123
-DB_ROOT_PASSWORD=rootpassword123
-```
-
-### 3. Iniciar la aplicación
+### 2. Iniciar la aplicación
 
 ```bash
 docker-compose up -d
 ```
 
-### 4. Acceder a la aplicación
+**¡Eso es todo!** Las credenciales ya están configuradas en el `docker-compose.yml`.
+
+### 3. Acceder a la aplicación
 
 Abre tu navegador en: **http://localhost:8080**
 

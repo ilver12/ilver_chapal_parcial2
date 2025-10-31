@@ -1,17 +1,5 @@
 # 📋 Instrucciones de Despliegue
 
-## Pasos para completar el proyecto
-
-### 1️⃣ Crear el archivo .env
-
-```bash
-cp .env.example .env
-```
-
-> **Nota**: El archivo `.env` contiene las credenciales de la base de datos. Puedes modificar los valores si lo deseas.
-
----
-
 ## 🐳 Comandos para Docker Hub
 
 ### Paso 1: Construir la imagen Docker
